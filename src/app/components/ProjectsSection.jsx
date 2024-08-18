@@ -7,57 +7,48 @@ import { motion, useInView } from "framer-motion";
 const projectsData = [
   {
     id: 1,
-    title: "React Portfolio Website",
-    description: "Project 1 description",
-    image: "/images/projects/1.png",
+    title: "Smart Ai Receipe Assistant - (SARA)",
+    description: "it gives receipe which includes given ingridients",
+    image: "/images/projects/4.png",
     tag: ["All", "Web"],
-    gitUrl: "/",
-    previewUrl: "/",
+    gitUrl: "https://github.com/DevSujal/an-intelligent-system-for-receipe-assistance-using-artificial-intelligence",
+    previewUrl: "https://github.com/DevSujal/an-intelligent-system-for-receipe-assistance-using-artificial-intelligence",
   },
   {
     id: 2,
-    title: "Potography Portfolio Website",
-    description: "Project 2 description",
+    title: "Notes Application",
+    description: "store your thoughts in our notes app",
     image: "/images/projects/2.png",
     tag: ["All", "Web"],
-    gitUrl: "/",
-    previewUrl: "/",
+    gitUrl: "https://github.com/DevSujal/notes-app",
+    previewUrl: "https://devsujal.github.io/notes-app",
   },
   {
     id: 3,
-    title: "E-commerce Application",
-    description: "Project 3 description",
+    title: "Dictionary Application",
+    description: "A dictionary application which provides meanings of all the words.",
     image: "/images/projects/3.png",
-    tag: ["All", "Web"],
-    gitUrl: "/",
-    previewUrl: "/",
+    tag: ["All", "Mobile"],
+    gitUrl: "https://github.com/DevSujal/React-Native-Projects/tree/main/MyDictionaryApp",
+    previewUrl: "https://github.com/DevSujal/React-Native-Projects/tree/main/MyDictionaryApp",
   },
   {
     id: 4,
-    title: "Food Ordering Application",
-    description: "Project 4 description",
-    image: "/images/projects/4.png",
-    tag: ["All", "Mobile"],
-    gitUrl: "/",
-    previewUrl: "/",
+    title: "Custom GPT",
+    description: "a chat application which provides information uniquely.",
+    image: "/images/projects/1.png",
+    tag: ["All", "Web"],
+    gitUrl: "https://github.com/devsujal/custom-gpt",
+    previewUrl: "https://github.com/devsujal/custom-gpt",
   },
   {
     id: 5,
-    title: "React Firebase Template",
-    description: "Authentication and CRUD operations",
+    title: "File Editing Backend",
+    description: "File manipulation using node js",
     image: "/images/projects/5.png",
     tag: ["All", "Web"],
-    gitUrl: "/",
-    previewUrl: "/",
-  },
-  {
-    id: 6,
-    title: "Full-stack Roadmap",
-    description: "Project 5 description",
-    image: "/images/projects/6.png",
-    tag: ["All", "Web"],
-    gitUrl: "/",
-    previewUrl: "/",
+    gitUrl: "http://github.com/DevSujal/file-edit-website",
+    previewUrl: "http://github.com/DevSujal/file-edit-website",
   },
 ];
 
@@ -101,7 +92,7 @@ const ProjectsSection = () => {
           isSelected={tag === "Mobile"}
         />
       </div>
-      <ul ref={ref} className="grid md:grid-cols-3 gap-8 md:gap-12">
+      <ul ref={ref} className="grid md:grid-cols-3 gap-8 md:gap-12 ">
         {filteredProjects.map((project, index) => (
           <motion.li
             key={index}

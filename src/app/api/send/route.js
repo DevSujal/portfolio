@@ -9,8 +9,8 @@ export async function POST(req, res) {
   console.log(email, subject, message);
   try {
     const data = await resend.emails.send({
-      from: fromEmail,
-      to: [fromEmail, email],
+      from: email,
+      to: [fromEmail],
       subject: subject,
       react: (
         <>
@@ -21,8 +21,10 @@ export async function POST(req, res) {
         </>
       ),
     });
+    console.log('data', data);
     return NextResponse.json(data);
   } catch (error) {
+    console.log('error', error);
     return NextResponse.json({ error });
   }
 }
