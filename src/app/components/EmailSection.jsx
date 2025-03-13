@@ -1,5 +1,6 @@
 "use client";
 import React, { useState } from "react";
+import emailjs from "@emailjs/browser";
 import GithubIcon from "../../../public/github-icon.svg";
 import LinkedinIcon from "../../../public/linkedin-icon.svg";
 import Link from "next/link";
@@ -10,32 +11,22 @@ const EmailSection = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const data = {
-      email: e.target.email.value,
-      subject: e.target.subject.value,
-      message: e.target.message.value,
-    };
-    const JSONdata = JSON.stringify(data);
-    const endpoint = "/api/send";
 
-    // Form the request for sending data to the server.
-    const options = {
-      // The method is POST because we are sending data.
-      method: "POST",
-      // Tell the server we're sending JSON.
-      headers: {
-        "Content-Type": "application/json",
-      },
-      // Body of the request is the JSON data we created above.
-      body: JSONdata,
-    };
+    try {
+      const result = await emailjs.sendForm(
+        process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID,
+        process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID,
+        e.target,
+        process.env.NEXT_PUBLIC_EMAILJS_USER_ID
+      );
 
-    const response = await fetch(endpoint, options);
-    const resData = await response.json();
-
-    if (response.status === 200) {
-      console.log("Message sent.");
-      setEmailSubmitted(true);
+      if (result.status === 200) {
+        console.log("Message sent.");
+        setEmailSubmitted(true);
+        e.target.reset(); // Clear the form
+      }
+    } catch (error) {
+      console.error("Failed to send email:", error);
     }
   };
 
@@ -59,7 +50,10 @@ const EmailSection = () => {
           <Link href="https://github.com/devsujal" target="blank">
             <Image src={GithubIcon} alt="Github Icon" />
           </Link>
-          <Link href="https://www.linkedin.com/in/sujal-nimje-9695712a3/" target="blank">
+          <Link
+            href="https://www.linkedin.com/in/sujal-nimje-9695712a3/"
+            target="blank"
+          >
             <Image src={LinkedinIcon} alt="Linkedin Icon" />
           </Link>
         </div>
@@ -79,7 +73,7 @@ const EmailSection = () => {
                 Your email
               </label>
               <input
-                name="email"
+                name="from_email"
                 type="email"
                 id="email"
                 required
